@@ -429,14 +429,14 @@ function install(root, dependencies, isDev, step) {
     }
     args.push('--cwd');
     args.push(root);
-
+    console.log('step start', step);
     const child = spawn(command, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
         reject(new Error(`${command} ${args.join(' ')}`));
         return;
       }
-      console.log('step', step);
+      console.log('step close', step);
       resolve();
     });
   });
@@ -448,13 +448,14 @@ function initGit() {
     const args = [
       'init',
     ];
-
+    console.log('initGit start')
     const child = spawn(command, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
         reject(new Error(`${command} ${args.join(' ')}`));
         return;
       }
+      console.log('initGit close')
       resolve();
     });
   });
