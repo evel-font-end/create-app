@@ -15,10 +15,8 @@ When you’re ready to deploy to production, create a minified bundle with npm r
 
 ## options
 
-[@epig/luna](https://github.com/evel-pig/luna)
-
 ```bash
-npx @efont/create-app my-app-m
+npx @efont/create-app my-app
 ```
 
 vue3版
