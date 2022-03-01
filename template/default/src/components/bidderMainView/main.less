@@ -1,0 +1,125 @@
+@headerHeight: 60px;
+#mainContent {
+  min-height: 100vh;
+  .img img {
+    width: 146px;
+  }
+  #topHeader {
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 23px;
+    background: #1561D3;
+    color: #fff;
+    height: @headerHeight;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.1);
+    .main-header-title {
+      font-size: 24px;
+      .system_logo{
+        width: 36px;
+        height: 36px;
+        display: inline-block ;
+        background: url('~common/images/logo.png') no-repeat;
+        background-size: contain;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+    }
+    .h-handler {
+      padding: 0 12px;
+    }
+    .el-dropdown {
+      line-height: 38px;
+    }
+    .dropdown-link {
+      color: #fff;
+      cursor: pointer;
+      border-right: 2px solid #4D77FC;
+      .avatar {
+        margin-right: 10px;
+        width: 28px;
+        height: 28px;
+        background: #fff;
+        border-radius: 50%;
+        background: url('~common/images/default_user.png');
+        background-size: contain;
+      }
+    }
+    .quit-button {
+      color: #fff;
+    }
+  }
+
+  .cont-left {
+    background: #FFF;
+    width: 220px;
+    top: @headerHeight;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    transition: width 0.5s;
+    overflow: hidden;
+    overflow-y: auto;
+    box-shadow: 0px 0px 7px 0px rgba(198, 198, 198, 0.5);
+    // 滚动条
+    &::-webkit-scrollbar-track-piece {
+      //滚动条凹槽的颜色，还可以设置边框属性
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar {
+      //滚动条的宽度
+      width: 2px;
+      height: 2px;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      //滚动条的设置
+      background-color: transparent;
+      background-clip: padding-box;
+      min-height: 28px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: transparent;
+    }
+  }
+
+  .cont-right {
+    top: @headerHeight;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    background: #e5e7ec;
+    transition: left 0.5s;
+    overflow-x: hidden;
+  }
+
+  .cont-center {
+    width: 1200px;
+    min-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 419px);
+    background: #FFF;
+    transition: left 0.5s;
+    overflow: auto;
+  }
+  // 动画
+  .fadeInUp-enter-active,
+  .fadeInUp-leave-active {
+    transition: 0.2s all;
+  }
+
+  .fadeInUp-enter {
+    top: 200%;
+    opacity: 0;
+  }
+
+  .fadeInUp-enter-to,
+  .fadeInUp-leave {
+    top: 100%;
+    opacity: 1;
+  }
+}

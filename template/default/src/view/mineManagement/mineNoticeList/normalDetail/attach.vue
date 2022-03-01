@@ -1,0 +1,344 @@
+<template>
+  <div class="box no-want-print" id="no-want-print">
+    <wrapper title="附件目录">
+      <template slot="header-right">
+        <el-button
+          type="text"
+          icon="el-icon-plus"
+          size="small"
+          @click="dialog.addAttach = true"
+          v-if="!(isDetail)"
+        >
+          新增附件目录
+        </el-button>
+      </template>
+      <collapse @item-click="itemClick" accordion>
+        <collapse-item
+          v-for="(item, index) in tableData"
+          :title="item.name"
+          :name="item.id"
+          :key="`c-item-${index}`"
+        >
+          <page-table
+            :data="attachDataList[item.id]"
+            :cols="tableCols"
+            col-align="left"
+            :show-page="false"
+            operator
+            operator-width="110"
+          >
+            <template
+              slot-scope="scope"
+              slot="operator"
+            >
+            <flex>
+              <a :href="`/api/fileupload/download?fileCode=${scope.row.fileCode}`">
+                <el-button type="text" size="small" :style="{marginRight: '10px'}">
+                  下载
+                </el-button>
+              </a>
+              <el-button type="text" size="small" @click.prevent.stop="singAction('delete', {
+                        fileCode: scope.row.fileCode,
+                        id: item.id
+                      })" v-if="!(isDetail)">
+                删除
+              </el-button>
+            </flex>
+            </template>
+          </page-table>
+          <flex justify="flex-end">
+            <button class="upload-button" v-if="!(isDetail)" @click.prevent.stop="dialog.importFile = true; dialog.uploadId=item.id">
+              <i class="el-icon-top"></i>
+              上传
+            </button>
+          </flex>
+        </collapse-item>
+
+      </collapse>
+    </wrapper>
+    <dialog-cont
+      @on-cancel="dialog.importFile=false"
+      :visible.sync="dialog.importFile"
+      :confirmShow="false"
+      :cancelShow="false"
+      title="上传"
+      width="500px"
+      append-to-body
+    >
+      <upload
+        ref="upload"
+        postUrl="#"
+        :fileLists="uploadFileList"
+        :multiple="true"
+        @change="uploadChange"
+        @remove="uploadRemove"
+        @submit="uploadSubmit"
+        @beforeUpload="beforeUpload"
+      ></upload>
+    </dialog-cont>
+    <dialog-cont
+      @on-cancel="dialog.addAttach=false"
+      @on-confirm="attachSubmit"
+      :visible.sync="dialog.addAttach"
+      title="新增附件目录"
+      width="500px"
+      append-to-body
+    >
+      <el-form ref="attachModel" :model="attachModel" :rules="attachRules" label-width="150px" status-icon>
+        <el-form-item label="附件目录名称：">
+          <el-input v-model="attachModel.name" placeholder="请输入附件目录名称"></el-input>
+        </el-form-item>
+      </el-form>
+    </dialog-cont>
+  </div>
+</template>
+
+<script>
+import Flex from '@/components/flex'
+import Wrapper from '@/components/wrapper';
+import { Collapse, CollapseItem } from '@/components/collapse';
+import PageTable from '@/components/page-table'
+import upload from '@/components/upload/upload';
+import dialogCont from '@/components/dialog';
+import {
+  landTradeAttachList,
+  getMineNoticeAttach,
+  attachList,
+  upload as uploadRequest,
+  saveAttach,
+  deleteFileByFileCode,
+  fileDownload
+} from '@/api';
+export default {
+  name: 'attach',
+  components: {
+    Wrapper,
+    Collapse,
+    CollapseItem,
+    PageTable,
+    Flex,
+    upload,
+    dialogCont
+  },
+  props: {
+    initId: {
+      type: [Number, String],
+      default: ''
+    },
+    data: {}
+  },
+  data () {
+    return {
+      initAttachData: null,
+      tableData: [],
+      tableCols: [
+        { label: '文件名', prop: 'fileName' }
+      ],
+      goodsId: this.data.row && this.data.row.id,
+      isAdd: !this.data.row,
+      isDetail: ['detail'].includes(this.data.configType),
+      attachDataList: {},
+      dialog: {
+        importFile: false, // 上传
+        title: '附件', // 弹窗标题
+        uploadId: null,
+        addAttach: false
+      },
+      attachModel: {
+        name: ''
+      },
+      attachRules: {
+        name: [
+          { required: true, message: '请输入附件目录名称', trigger: 'blur' }
+        ]
+      },
+      uploadFileList: []
+    }
+  },
+  watch: {
+    initId:{
+      deep: true,
+      handler (val) {
+        if (val) {
+          this.initId = val;
+          this.goodsId = this.data.row && this.data.row.id;
+          this.isAdd = !this.data.row;
+          this.isDetail = ['detail'].includes(this.data.configType);
+          this.reqAttach()
+        }
+      }
+    } ,
+    data (val) {
+      this.data = val;
+      this.goodsId = val.row && val.row.id;
+      this.isAdd = !val.row;
+      this.isDetail = ['detail'].includes(val.configType);
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      if (this.data.row && this.data.row.id) {
+        this.reqAttach();
+      }
+    });
+  },
+  methods: {
+    itemClick (val) {
+      const name = val.name;
+      if (!this.attachDataList[name]) {
+        this.getAttachList(name);
+      }
+    },
+    uploadChange (file) {
+      this.uploadFileList = file.fileList;
+    },
+    uploadRemove (file) {
+      this.uploadFileList = file.fileList;
+    },
+    beforeUpload (file) {
+      return this;
+    },
+    uploadSubmit () {
+      const { row, configType } = this.data;
+      if (this.uploadFileList.length === 0) {
+        this.$notify.error({
+          title: '失败',
+          message: '请先选择上传文件!!!',
+          position: 'bottom-right'
+        });
+        return;
+      }
+      const serviceId = configType === 'add' ? this.initId : row.id;
+      const wfForm = new FormData();
+      wfForm.append('attachId', this.dialog.uploadId);
+      wfForm.append('serviceCode', 'TRANS_NOTICE');
+      wfForm.append('serviceId', serviceId);
+      this.uploadFileList.forEach(file => {
+        wfForm.append('file', file.raw);
+      })
+      uploadRequest(wfForm).then(res => {
+        if (res.code === '200') {
+          this.$notify({
+            title: '成功',
+            message: '文件上传成功',
+            type: 'success',
+            position: 'bottom-right'
+          });
+          this.dialog.importFile = false;
+          this.uploadFileList = [];
+          this.$refs.upload.fileList.map(list => list.clearFiles);
+          this.getAttachList(this.dialog.uploadId);
+        } else {
+          this.$notify.error({
+            title: '失败',
+            message: res.message,
+            position: 'bottom-right'
+          });
+          return false;
+        }
+      })
+    },
+    singAction (type, {fileCode, id}) {
+      const method = {
+        'download': {
+          api: fileDownload,
+          message: '下载成功'
+        },
+        'delete': {
+          api: deleteFileByFileCode,
+          message: '删除成功'
+        }
+      };
+      if (fileCode) {
+        const apiMethod = method[type].api;
+        const message = method[type].message;
+        apiMethod(fileCode).then(res => {
+          if (res.code === '200') {
+            this.$notify({
+              title: '成功',
+              message,
+              type: 'success',
+              position: 'bottom-right'
+            });
+            if (type === 'delete') {
+              this.getAttachList(id);
+            }
+          } else {
+            this.$notify.error({
+              title: '失败',
+              message: res.message,
+              position: 'bottom-right'
+            });
+          }
+        })
+      }
+    },
+    attachSubmit () {
+      const { isAdd, goodsId, initId } = this;
+      this.$refs.attachModel.validate(valid => {
+        if (valid) {
+          const request = {
+            ...this.attachModel,
+            refId: isAdd ? initId : goodsId,
+            refTableName: 'TRANS_NOTICE'
+          };
+          saveAttach(request).then(res => {
+            if (res.code === '200') {
+              this.$notify({
+                title: '成功',
+                message: '新增成功',
+                type: 'success',
+                position: 'bottom-right'
+              });
+              this.dialog.addAttach = false;
+              this.reqAttach();
+            } else {
+              this.$notify.error({
+                title: '失败',
+                message: '请填写完整必填数据!!!',
+                position: 'bottom-right'
+              });
+            }
+          });
+        }
+      });
+    },
+    getAttachList (id) {
+      attachList(id).then(res => {
+        if (res.code === '200') {
+          this.$set(this.attachDataList, id, res.data)
+        }
+      });
+    },
+    reqAttach () {
+      const { goodsId, initId } = this;
+      const param = {
+        goodsId: this.isAdd ? initId : goodsId
+      }
+      getMineNoticeAttach(param.goodsId).then(res => {
+        if (res.code === '200') {
+          this.tableData = res.data
+        }
+      })
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.box{
+  margin-top: 20px;
+  /deep/.comp-wrapper-header{
+    // padding: 0;
+  }
+}
+.upload-button {
+  margin: 12px 30px;
+  width:64px;
+  height:28px;
+  background:rgba(219,233,255,1);
+  color:#065BDC;
+  font-size: 14px;
+  cursor: pointer;
+}
+</style>

@@ -1,0 +1,38 @@
+<template>
+  <div id="<%= componentName %>">
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+    };
+  },
+  props: {
+    listData: {
+    },
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init();
+    });
+  },
+  methods: {
+    init () {
+    },
+  },
+  watch: {
+    listData : {
+      immediate: true,
+      handler: function (newVal, oldVal) {
+        console.log(newVal)
+      }
+    }
+  }
+};
+</script>
+
+<style lang="less">
+#<%= componentName %>{}
+</style>

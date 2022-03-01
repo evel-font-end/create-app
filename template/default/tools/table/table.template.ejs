@@ -1,0 +1,210 @@
+/* eslint-disable camelcase */
+<template>
+  <div id='<%= componentName %>' >
+    <!-- 业务执行管理 -->
+    <header-title
+      icon="iconfont icon-shouye"
+      title="业务执行管理"
+      :addBtnVisible="$_hasOperation($options.name,'add')"
+      :delBtnVisible="$_hasOperation($options.name,'delete')"
+      @on-addBtn="openDialog('add');"
+    >
+      <search-form
+        slot="searchBox"
+        :searchItems="searchItems"
+        @onSearch="onSearch"
+      />
+    </header-title>
+
+    <div class="content-view">
+      <div class="Modeltable">
+        <page-table
+          col-align="left"
+          operator-width="110"
+          operator
+          :data="tableData"
+          :cols="tableCols"
+          :selection="true"
+          :page-current="page.current"
+          :total="page.total"
+          :page-size="page.pageSize"
+          @current-change="onCurrentChange"
+          @size-change="onPageSizeChange"
+        >
+          <template
+            slot-scope="scope"
+            slot="operator"
+          >
+          <flex>
+            <el-button
+              type="text"
+              size="small"
+              title="详情"
+              icon="iconfont icon-feeds-fill"
+              :style="{marginRight: '10px'}"
+              @click.prevent.stop="jump('detail', {
+                row: scope.row
+              })"
+              v-if="$_hasOperation($options.name,'examine')">
+          >
+          </el-button>
+          <el-button
+              type="text"
+              size="small"
+              title="编辑"
+              icon="iconfont icon-xiugaii"
+              @click.prevent.stop="jump('edit', {
+                row: scope.row
+              })"
+              v-if="(scope.row.canEdit ===1)&&($_hasOperation($options.name,'edit'))">
+          >
+          </el-button>
+          <el-button 
+              icon="iconfont icon-delete" type="text" size="small" title="删除"
+              @click.prevent.stop="handleDelBtnClick(scope.row)"
+              v-if="(scope.row.canDelete ===1)&&($_hasOperation($options.name,'delete'))">
+            </el-button>
+          </flex>
+          </template>
+        </page-table>
+      </div>
+    </div>
+
+    <edit :show="editshow" :data="editdata" @cancel="closeEdit"></edit>
+  </div>
+</template>
+
+<script>
+import headerTitle from 'components/headerTitle/headerTitle'
+import searchForm from 'components/searchForm/searchForm';
+import PageTable from '@/components/page-table';
+import Flex from '@/components/flex';
+import Edit from './Edit';
+import {
+  listInstancesByCondition,
+} from '@/api';
+export default {
+  name: '<%= componentName %>',
+  data () {
+    return {
+      searchVal: {},
+      searchItems: [{
+        type: 'input',
+        label: '业务名称',
+        props: {
+          fieldName: 'instanceName'
+        }
+      }, {
+        type: 'select',
+        label: '业务状态',
+        props: {
+          fieldName: 'status',
+          placeholder: '业务状态选择',
+          options: [{
+            id: null,
+            name: '全部'
+          }, {
+            id: 0,
+            name: '待下发'
+          }, {
+            id: 1,
+            name: '待执行'
+          }, {
+            id: 2,
+            name: '执行中'
+          }, {
+            id: 3,
+            name: '已完成'
+          }, {
+            id: 4,
+            name: '已取消'
+          }]
+        }
+      }],
+      page: {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      },
+      tableData: [],
+      tableCols: [
+        { label: '银行账号', prop: 'account' }
+      ],
+      editshow: false,
+      editdata: {}
+    }
+  },
+  created () {
+    this.getDataAllList()
+  },
+  components: {
+    headerTitle,
+    searchForm,
+    PageTable,
+    Edit,
+    Flex
+  },
+  methods: {
+    onSearch (val) {
+      this.searchVal = {
+        ...val
+      }
+      this.onCurrentChange(1);
+    },
+    // 获取所有/查询数据列表
+    getDataAllList () {
+      let data = {
+        data: {
+          ...this.searchVal
+        },
+        pageNo: this.page.current,
+        pageSize: this.page.pageSize
+      };
+      listInstancesByCondition(data).then(res => {
+        if (res.code === '200') {
+          const { data, total } = res.data
+          this.tableData = data;
+          this.page.total = total;
+        }
+      })
+    },
+    onCurrentChange (val) {
+      this.page.current = val;
+      this.getDataAllList()
+    },
+    onPageSizeChange (val) {
+      this.page.pageSize = val
+      this.onCurrentChange(1)
+    },
+    handleDelBtnClick (row) {
+      this.$confirm('此操作将永久删除该所选公告, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        const apiMethod = '';
+        apiMethod(row.id).then(res => {
+          if (res.code === '200') {
+            this.$notify({
+              title: '成功',
+              message: '删除成功',
+              type: 'success',
+              position: 'bottom-right'
+            });
+            this.onCurrentChange(1);
+          }
+        }).catch(() => {
+        });
+      });
+    },
+    jump (configType, parames) {
+      this.editdata = configType === 'add' ? { configType } : { configType, ...parames };
+      this.editshow = true;
+    }
+  }
+}
+</script>
+
+<style lang="less">
+#<%= componentName %>{}
+</style>

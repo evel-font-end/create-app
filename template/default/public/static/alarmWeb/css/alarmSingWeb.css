@@ -1,0 +1,254 @@
+html, body {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.split-pane-divider {
+  background: #aaa;
+}
+#left-component {
+  width: 20em;
+  min-width: 220px;
+}
+
+#right-component {
+  left: 0em;  /* Same as left component width */
+  margin-left: 5px;  /* Same as divider width */
+  /* min-width: 300px; */
+  overflow: hidden;
+}
+#vertical-divider {
+	left: 20em;
+	width: 5px;
+}
+#top-component {
+	bottom: 0% !important;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
+#split-pane-main.split-pane{
+	min-width: 100% !important;
+}
+#horizontal-divider {
+	bottom: 30%;
+	height: 5px;
+}
+
+#bottom-component {
+	height: 30%;
+	min-height: 150px;
+}
+
+h3{
+	margin: 10px auto;
+	text-align: center;
+}
+.contenDiv{
+	margin: 0 10px auto;
+	padding: 10px;
+}
+.loginDiv{
+	border: 1px solid #DCDEE2;
+	margin: 5px;
+	border-radius: 0.3em;
+	
+}
+.loginDiv input{
+	line-height: 30px;
+	border: 1px solid #DCDEE2;
+	width: 100%;
+	margin-top: 5px;
+	border-radius: 0.3em;
+	padding-left: 5px;
+}
+#loginBtn{
+	text-align: center;
+	width: 95%;
+	height: 40px;
+	margin: 15px 0px;
+	line-height: 40px;
+	border-radius: 0.5em;
+	background: #1E78FF;
+	color: white;
+}
+#login{
+	text-align: center;
+}
+#closeAll{
+	cursor: pointer;
+}
+.alarmDiv .alarmRecode input{
+	line-height: 30px;
+    margin-right: 10px;
+    height: 30px;
+    width: 80px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0px;
+    border-radius: 0.3em;
+    background: #1E78FF;
+    color: white;
+    outline: none;
+	border: 0px;
+	cursor: pointer;
+	visibility: hidden;
+}
+.alarmDiv .alarmRecode input.visibility {
+	visibility: visible !important;
+}
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-left: 1px solid #888;
+	border-top: 1px solid #888;
+	width: 100%;
+	height: 100%;
+}
+th,td{
+	border-right:1px solid #888;
+	border-bottom:1px solid #888;
+	padding:5px 15px;
+	text-align: center;
+}
+th{
+	font-weight: bold;
+	background: #F2F2F2;
+}
+tr:hover{
+	background: #E7E7E7;
+}
+.videoDiv{
+	height: 100% !important;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 0;
+	overflow-x: hidden;
+	z-index: 1;
+	position:relative;
+	background: #000000;
+}
+.videoDiv span{
+	position:absolute;
+	bottom: 10px;
+	right: 10px;
+	color: white;
+	z-index:2;
+}
+.videoboxDiv{
+	margin: 0 auto;
+	background: #000000;
+	position:relative;
+}
+video{
+	height: 100%;
+	width: 100%;
+}
+
+video::-webkit-media-controls{
+    display:none !important;
+}
+.funDiv{
+	box-sizing: border-box;
+	padding: 0 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 2;
+	border-top: 1px solid #a1a1a1;
+	height: 60px;
+	width: 100%;
+	vertical-align: middle;
+	overflow-x: hidden;
+}
+
+.funDiv input {
+	line-height : 30px;
+	margin-right: 10px;
+	height: 30px;
+	width: 80px;
+	vertical-align:middle;   
+	text-align:center;
+	padding:0px;
+	border-radius: 0.3em;
+	background: #1E78FF;
+	color: white;
+	outline：none;
+	border: 0px;
+}
+
+.funDiv #historyList{
+	float: right;
+	font-size: 14px;
+	color:#1E78FF;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.selectVideo{
+	/* border:2px solid red; */
+}
+
+#logout{
+	width: 60px;
+	height: 30px;
+	float: right;
+	margin: 10px;
+	line-height: 30px;
+	border-radius: 0.3em;
+	background: #1E78FF;
+	color: white;
+	outline：none;
+	border: 0px;
+}
+.device{
+	clear: both;
+}
+li{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #eee;
+	vertical-align: middle;
+	font-size: 20px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+li:hover{
+	background: #eee;
+}
+.liSelected{
+	background: #e1e1e1;
+}	
+.alarm_Online {
+	list-style:url("../image/alarm.png") inside;
+}
+.alarm_Offline {
+	list-style:url("../image/alarm.Offline.png") inside;
+}
+.linkage_Online {
+	list-style:url("../image/linkage.png") inside;
+}
+.linkage_Offline {
+	list-style:url("../image/linkage.Offline.png") inside;
+}
+.loading, .micImg{
+	position:absolute;
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 0 auto;
+	left: calc(50% - 100px);
+	top: calc(50% - 100px);
+}
+.micImg{
+	left: calc(50% - 50px);
+	top: calc(50% - 50px);
+}

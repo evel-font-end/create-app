@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汕尾市公共资源交易平台</title>
+    <link href="./static/css/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/base.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <script src="./static/js/jquery.3.4.1.js"></script>
+</head>
+
+<body class="web_page h rel w">
+    <div class="header_page"></div>
+    <div class="navigation bg_m c_f fs18">
+        <div class="main b">
+            <a class="fl bg_dm" href="index.html">首页</a>
+            <a class="fl" href="./pages/land.html">土地交易</a>
+            <a class="fl " href="./pages/mine.html">矿业权交易</a>
+            <a class="fl " href="./pages/arable.html">耕地指标</a>
+            <a class="fl " href="./pages/arable.html">我的申请</a>
+            <a class="fl " href="./pages/arable.html">竞价记录</a>
+            <a class="fl " href="./pages/arable.html">标的申请</a>
+            <a class="fr login">登录系统<i class="login_icon"></i></a>
+        </div>
+    </div>
+    <div class="content home">
+        <div class="main">
+            <div class="home_module_1 w">
+                <div class="card card_1 c_50">
+                    <div class="left_item">
+                        <img class="mgb_8" src="./static/img/home/land_deal@2x.png" alt="">
+                        <p class="fs18 b tx_c">土地交易</p>
+                    </div>
+                    <div class="right_item fs14 ">
+                        <div class="ri_t">
+                            <p class="mgb_8"><span class="fs26">14753</span><span class="c_5d">个</span></p>
+                            <p class="c_5d">总成交数</p>
+                        </div>
+                        <div class="ri_b">
+                            <p class="mgb_8"><span class="fs26">135.2</span><span class="c_5d">万元</span></p>
+                            <p class="c_5d">总成交金额</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card_2 c_50">
+                    <div class="left_item">
+                        <img class="mgb_8" src="./static/img/home/mineral_deal@2x.png" alt="">
+                        <p class="fs18 b tx_c">矿业权交易</p>
+                    </div>
+                    <div class="right_item fs14 ">
+                        <div class="ri_t">
+                            <p class="mgb_8"><span class="fs26">14753</span><span class="c_5d">个</span></p>
+                            <p class="c_5d">总成交数</p>
+                        </div>
+                        <div class="ri_b">
+                            <p class="mgb_8"><span class="fs26">135.2</span><span class="c_5d">万元</span></p>
+                            <p class="c_5d">总成交金额</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card_3 c_50">
+                    <div class="left_item">
+                        <img class="mgb_8" src="./static/img/home/arable_target@2x.png" alt="">
+                        <p class="fs18 b tx_c">耕地指标</p>
+                    </div>
+                    <div class="right_item fs14 ">
+                        <div class="ri_t">
+                            <p class="mgb_8"><span class="fs26">14753</span><span class="c_5d">个</span></p>
+                            <p class="c_5d">总成交数</p>
+                        </div>
+                        <div class="ri_b">
+                            <p class="mgb_8"><span class="fs26">135.2</span><span class="c_5d">万元</span></p>
+                            <p class="c_5d">总成交金额</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="home_module_2 w">
+                <div class="tab_content">
+                    <div class="module_title c_0f fs22 b in_b va_m">土地交易</div>
+                    <ul class="tab fs16 in_b va_m" id="tab1">
+                        <li class="li current"><span>正在公告</span></li>
+                        <li class="li"><span>正在竞价</span></li>
+                        <li class="li"><span>结果公示</span></li>
+                        <li class="li"><span>补充公告</span></li>
+                    </ul>
+                    <a class="fs14 c_m fr clearfix more" href="./pages/land.html">更多</a>
+                </div>
+                <div class="fs18 c_text b">穗规划资源埔（开）挂出告字〔2020〕04号</div>
+                <div class="module_table"></div>
+            </div>
+            <div class="home_module_3 w">
+                <div class="tab_content">
+                    <div class="module_title c_0f fs22 b in_b va_m">矿业权交易</div>
+                    <ul class="tab fs16 in_b va_m" id="tab2">
+                        <li class="li current"><span>正在公告</span></li>
+                        <li class="li"><span>正在竞价</span></li>
+                        <li class="li"><span>结果公示</span></li>
+                        <li class="li"><span>补充公告</span></li>
+                    </ul>
+                    <a class="fs14 c_m fr clearfix more" href="./pages/mine.html">更多</a>
+                </div>
+                <div class="fs18 c_text b">穗规划资源埔（开）挂出告字〔2020〕04号</div>
+                <div class="module_table"></div>
+            </div>
+            <div class="home_module_4 w">
+                <div class="tab_content">
+                    <div class="module_title c_0f fs22 b in_b va_m">耕地交易</div>
+                    <ul class="tab fs16 in_b va_m" id="tab3">
+                        <li class="li current"><span>正在公告</span></li>
+                        <li class="li"><span>正在竞价</span></li>
+                        <li class="li"><span>结果公示</span></li>
+                        <li class="li"><span>补充公告</span></li>
+                    </ul>
+                    <a class="fs14 c_m fr clearfix more" href="./pages/arable.html">更多</a>
+                </div>
+                <div class="fs18 c_text b">穗规划资源埔（开）挂出告字〔2020〕04号</div>
+                <div class="module_table"></div>
+            </div>
+            <div class="home_module_5 w">
+                <div class="tab_content">
+                    <div class="module_title c_m fs22 b in_b va_m">服务入口</div>
+                </div>
+                <div class="module_enter c_f">
+                    <div class="trading_live">
+                        <a href="./pages/live.html">
+                            <div class="inner_text">
+                                <p class="name">交易直播</p>
+                                <p class="desc">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="system_help">
+                        <a href="./pages/help.html">
+                            <div class="inner_text">
+                                <p class="name">系统帮助</p>
+                                <p class="desc">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="file_down">
+                        <a href="./pages/down.html">
+                            <div class="inner_text">
+                                <p class="name">文件下载</p>
+                                <p class="desc">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_page"></div>
+    <script src="./static/js/index.js"></script>
+</body>
+
+</html>

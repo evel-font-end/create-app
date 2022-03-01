@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" type="text/css" href="css/split-pane.css" />
+<link rel="stylesheet" type="text/css" href="css/alarmSingWeb.css" />
+<script type="text/babel" src="https://blog-static.cnblogs.com/files/gxsyj/browser.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/split-pane.js"></script>
+<script type="text/javascript" src="js/resize.js"></script>
+<script type="text/javascript" src="js/pcm-player.js"></script>  
+<script type="text/javascript" src="js/DHAlarmWeb.js"></script>  
+<script type="text/javascript" src="js/DHBufferPool.js"></script>
+<script type="text/javascript" src="dist1/wfs.js" ></script>  
+<script type="text/javascript" src="js/alarmSingWeb.js" ></script>
+</head>
+<!-- ssssss -->
+<body>
+	<div id="split-pane-main" class="split-pane fixed-left" style="min-width: 100%">
+		<div class="split-pane-component" id="left-component" style="display: none;">
+		
+			<div class = "loginDiv" style="display: none;">
+				<form>
+					<h3>云坐席登录</h3>
+					<div class="contenDiv">
+						<!-- <lable>用户名：</lable> -->
+						<input id="uname" type="text" required maxlength = "20" value="test" placeholder="请输入用户名"/>
+					</div>
+					<div class="contenDiv">
+						<!-- <lable>密码：</lable> -->
+						<input id="pwd" type="password" required maxlength = "20" value="123456" placeholder="请输入密码"/>
+					</div>
+					<div class="contenDiv">
+						<!-- <lable>服务器地址：</lable> -->
+						<input id="serverIp" type="text" required maxlength = "20" value="www.uismp.com" placeholder="请输入服务器地址"/>
+					</div>
+					<div class="contenDiv">
+						<!-- <lable>端口号：</lable> -->
+						<input id="port" type="text" required maxlength = "10" value="8088" placeholder="请输入端口号"/>
+					</div>
+					<div id="login">
+						<input id="loginBtn" type = "button"  value="登录" />
+					</div>
+				</form>
+			</div>
+			<div class = "deviceDiv" style="display: none;">
+				<div class="showNameDiv" style="height: 50px;visibility: hidden;">
+					<p style ="position: absolute;margin-left: 10px; margin-right: 80px;"></p>
+					<input style ="right: 10px;position: absolute;" id = "logout" type = "button" value = "退出"/>
+				</div>
+				<div style="margin: 10px;">
+					<b>总数：</b><span class="totalCount">0</span>&nbsp;&nbsp;
+					<b>在线数：</b><span class="onlineCount">0</span>
+					<div style ="float:right; margin-right: 10px;">
+						<b>状态：</b><span class="state"></span>
+					</div>
+					
+				</div>
+				<hr style="clear: both; margin-top: 10px;">
+				<h3 >设备列表</h3>
+			
+				<div class="device">
+				</div>
+
+			</div>
+		</div>
+		<div class="split-pane-divider" id="vertical-divider" style="display: none;"></div>
+		<div class="split-pane-component" id="right-component">
+			<div class="split-pane horizontal-percent">
+				<div class="split-pane-component" id="top-component">
+					<div class= "videoDiv">
+						<!-- <div class="videoboxDiv" ondblclick="launchFullscreen(this)"> -->
+							<!-- <video class="selectVideo"  onclick="selectedVideo(this)"></video> -->
+							<!-- <img class="loading" src="./image/loading.gif"/> -->
+						<!-- </div> -->
+					</div>
+					<div class="funDiv" style="display: none;">
+						<div>
+							<!-- <input id="talk" type="button" value = "对讲"/>
+							<input id="unlock" type="button" value = "开闸"/> -->
+							<input id="closeAll" type="button" value = "全部关闭"/>
+						</div>
+						<div id="historyList">历史报警记录</div>
+					</div>
+				</div>
+				<div class="split-pane-divider" id="horizontal-divider" style="display: none;"></div>
+				<div class="split-pane-component" id="bottom-component" style="display: none;">
+					<div class="alarmDiv">
+						<table>
+							<tr>
+								<th>设备名</th>
+								<th>报警人</th>
+								<th>报警人联系电话</th>
+								<th>报警开始时间</th>
+								<th>呼叫状态</th>
+								<th>操作</th>
+							</tr>
+						
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+</html>
+

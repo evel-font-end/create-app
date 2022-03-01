@@ -1,0 +1,205 @@
+#mainContent {
+  .img img{width: 146px}
+  .cont-left {
+    background: #243b46;
+    width: 220px;
+    top: 59px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    transition: width .5s;
+    overflow: hidden;
+  overflow-y: auto;
+  // 滚动条
+  &::-webkit-scrollbar-track-piece {
+    //滚动条凹槽的颜色，还可以设置边框属性
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar {
+    //滚动条的宽度
+    width: 2px;
+    height: 2px;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    //滚动条的设置
+    background-color: transparent;
+    background-clip: padding-box;
+    min-height: 28px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: transparent;
+  }
+  }
+
+  .cont-right {
+    top: 59px;
+    bottom: 0;
+    left: 220px;
+    right: 0;
+    background: #e6e6e6;
+    transition: left .5s;
+  }
+
+  .topMean {
+    background: #2C78EB;
+    height: 59px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.1);
+
+
+    .logo {
+      height: 59px;
+      width: 220px;
+      text-align: center;
+      line-height: 59px;
+      position: relative;
+      &:after{
+        content: '';
+        display: block;
+        width: 1px;
+        background: #F4F4F4;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        bottom: 4px;
+      }
+    }
+    .icon-left {
+      margin: 0px 0 0 10px;
+      line-height: 59px;
+      color: #afadad;
+
+      i {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 59px;
+
+        &:hover {
+          color: #fc555a;
+          transition: all .2s;
+
+          &:after {
+            background: #fc555a;
+            width: 100%;
+
+            transition: all .2s;
+          }
+        }
+
+        &:after {
+          content: '';
+          display: block;
+          height: 2px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          transition: all .2s;
+        }
+      }
+    }
+
+
+    .icon-list {
+      margin: 10px 15px 0 0;
+
+      i {
+        color: #c8c8c8;
+      }
+    }
+
+
+    i {
+      cursor: pointer;
+    }
+
+
+
+    .icon-right {
+      .showUserCenter {
+        z-index: 100;
+        width: 160px;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        padding: 1px 0 0 0;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        background-clip: padding-box;
+        color: #555;
+        padding-bottom: 10px;
+        border-top: 0;
+        right: 0;
+        top: 35px;
+        li {
+          padding: 3px 20px;
+          font-weight: 400;
+          white-space: nowrap;
+          cursor: pointer;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        li:hover {
+          background-color: #e1e3e9
+        }
+
+        li.divider {
+          background-color: #ddd;
+          height: 1px;
+          margin: 9px 0;
+          overflow: hidden;
+          padding: 0;
+        }
+
+        i {
+          color: #555;
+          margin: 0;
+          margin-right: 10px;
+          line-height: 30px
+        }
+      }
+      .userCenter{line-height: 30px;z-index: 100;}
+      .userCenter{
+        .user-img{
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          background: #FACCD1;
+          line-height: 30px;
+          color: #fff;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+
+
+
+
+  // 动画
+  .fadeInUp-enter-active,
+  .fadeInUp-leave-active {
+    transition: .2s all
+  }
+
+  .fadeInUp-enter {
+    top: 200%;
+    opacity: 0;
+  }
+
+  .fadeInUp-enter-to,
+  .fadeInUp-leave {
+    top: 100%;
+    opacity: 1;
+  }
+
+
+}

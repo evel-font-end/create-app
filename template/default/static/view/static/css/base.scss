@@ -1,0 +1,160 @@
+// 字体颜色
+.c_f {
+  color: #fff;
+}
+.c_0f {
+  color: #0f0f0f;
+}
+.c_16 {
+  color: #161616;
+}
+.c_18 {
+  color: #181818;
+}
+.c_50 {
+  color: #505050;
+}
+.c_57 {
+  color: #575757;
+}
+.c_5d {
+  color: #5d5d5d;
+}
+.c_7c {
+  color: #7c7c7c;
+}
+.c_text {
+  color: #3f4040;
+}
+.c_line {
+  color: #a6a6a6;
+}
+.text_c {
+  color: #363636;
+}
+.c_h {
+  color: #e95f0b;
+}
+.c_m {
+  color: #1561d3;
+}
+.c_dm {
+  color: #003a91;
+}
+// 背景色
+.bg_m {
+  background: #1561d3;
+}
+.bg_dm {
+  background: #003a91;
+}
+.tl_bc {
+  background: #fafafa;
+}
+.td_bc {
+  background: #f0f0f0;
+}
+// 字体大小
+.fs14 {
+  font-size: 14px;
+}
+.fs16 {
+  font-size: 16px;
+}
+.fs18 {
+  font-size: 18px;
+}
+.fs24 {
+  font-size: 24px;
+}
+.fs26 {
+  font-size: 26px;
+}
+.fs36 {
+  font-size: 36px;
+}
+// 内容方向
+.tx_l {
+  text-align: left;
+}
+.tx_c {
+  text-align: center;
+}
+.tx_r {
+  text-align: right;
+}
+.mg_c {
+  margin: 0 auto;
+}
+.in_b {
+  display: inline-block;
+}
+.va_m {
+  vertical-align: middle;
+}
+// 宽度
+.w {
+  width: 100%;
+}
+// 高度
+.h {
+  height: 100%;
+}
+
+// 定位
+.rel {
+  position: relative;
+}
+.abs {
+  position: absolute;
+}
+
+.l0 {
+  left: 0;
+}
+.r0 {
+  right: 0;
+}
+.b0 {
+  bottom: 0;
+}
+.t0 {
+  top: 0;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+// 兼容IE6
+.clearfix {
+  *zoom: 1;
+}
+
+.b {
+  font-weight: bold;
+}
+// 版心
+.main {
+  width: 1200px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mgb_8 {
+  margin-bottom: 8px;
+}
+html {
+  min-width: 1200px;
+  overflow-x: auto;
+}

@@ -1,0 +1,85 @@
+version: '3'
+services:
+  # 配置中心
+  config:
+    image: config:latest
+    ports:
+      - 8010:8010
+    environment:
+      - JAVA_OPTS="-Xms512m -Xmx512m"
+  # 服务发现
+  registry:
+    image: registry:latest
+    ports:
+      - 8000:8000
+    environment:
+      - JAVA_OPTS="-Xms512m -Xmx512m"
+      - spring.profiles.active=test
+      - spring.cloud.config.uri=http://config:8010
+    links:
+      - config
+  # 网关
+  gateway:
+    image: gateway:latest
+    ports:
+      - 8100:8100
+    environment:
+      - JAVA_OPTS="-Xms1g -Xmx1g"
+      - spring.profiles.active=test
+      - spring.cloud.config.uri=http://config:8010
+    links:
+      - config
+      - registry
+    volumes:
+      - /data/device-dump:/data/device-dump
+  # 用户管理
+  users:
+    image: users:latest
+    ports:
+      - 8200:8200
+    environment:
+      - JAVA_OPTS="-Xms1g -Xmx1g"
+      - spring.profiles.active=test
+      - spring.cloud.config.uri=http://config:8010
+    links:
+      - config
+      - registry
+    volumes:
+      - /data/device-dump:/data/device-dump
+  # 产品编排管理
+  products:
+    image: products:latest
+    environment:
+      - JAVA_OPTS="-Xms1g -Xmx1g"
+      - spring.profiles.active=test
+      - spring.cloud.config.uri=http://config:8010
+    ports:
+      - 8300:8300
+    links:
+      - config
+      - registry
+    volumes:
+      - /data/device-dump:/data/device-dump
+  # 设备控制
+  controllers:
+    image: controllers:latest
+    environment:
+      - JAVA_OPTS="-Xms1g -Xmx1g"
+      - spring.profiles.active=test
+      - spring.cloud.config.uri=http://config:8010
+    ports:
+      - 8400:8400
+    links:
+      - config
+      - registry
+    volumes:
+      - /data/device-dump:/data/device-dump
+  # 前端
+  web:
+    image: web:latest
+    links:
+      - gateway
+    ports:
+      - 80:80
+    volumes:
+      - /data/device-dump:/data/device-dump
