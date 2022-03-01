@@ -321,13 +321,13 @@ async function run(projectType, root, appName, originalDirectory, allDependencie
    */
 
   initGit().then(() => {
-    return install(root, allDependencies, false);
+    return install(root, allDependencies, false, '1');
   })
   .then(() => {
-    return install(root, allDevdependencies, true).then(() => { return ''; });
+    return install(root, allDevdependencies, true, '2').then(() => { return ''; });
   })
   .then(() => {
-    return install(root, buildInDependencies, false).then(() => '');
+    return install(root, buildInDependencies, false, '3').then(() => '');
   })
   .then(() => {
     return initialCommit();
@@ -413,7 +413,7 @@ function success(appPath, appName, originalDirectory) {
   console.log('Happy hacking!');
 }
 
-function install(root, dependencies, isDev) {
+function install(root, dependencies, isDev, step) {
   return new Promise((resolve, reject) => {
     const command = 'npm';
     let args = [
@@ -436,6 +436,7 @@ function install(root, dependencies, isDev) {
         reject(new Error(`${command} ${args.join(' ')}`));
         return;
       }
+      console.log('step', step);
       resolve();
     });
   });
