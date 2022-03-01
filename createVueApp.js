@@ -25,9 +25,9 @@ const defaultPackageJson = {
 };
 
 const devDependencies = [
-  "@vue/cli-plugin-babel",
-    "@vue/cli-service",
-    "autoprefixer",
+    "@vue/cli-plugin-babel@4.5.0",
+    "@vue/cli-service@4.5.0",
+    "autoprefixer@7.1.2",
     "babel-core",
     "babel-eslint",
     "babel-loader",
@@ -37,7 +37,7 @@ const devDependencies = [
     "compression-webpack-plugin",
     "copy-dir",
     "cross-env",
-    "css-loader",
+    "css-loader@^0.28.11",
     "ejs",
     "eslint",
     "eslint-config-standard",
@@ -56,8 +56,8 @@ const devDependencies = [
     "imagemin-pngquant",
     "jsencrypt",
     "jsonp",
-    "less",
-    "less-loader",
+    "less@^3.8.1",
+    "less-loader@4.1.0",
     "mediaelementjs",
     "mockjs",
     "ora",
@@ -65,18 +65,20 @@ const devDependencies = [
     "portfinder",
     "postcss-import",
     "postcss-loader",
+    "postcss-pxtorem@5.1.1",
     "postcss-url",
     "puer",
     "px2rem-loader",
     "rimraf",
     "semver",
     "shelljs",
-    "style-loader",
+    "style-loader@^0.23.1",
     "uglifyjs-webpack-plugin",
     "url-loader",
     "vue-loader",
     "vue-quill-editor",
-    "vue-template-compiler",
+    "vue-style-loader@3.1.2",
+    "vue-template-compiler@2.5.2",
     "webpack-bundle-analyzer",
 ];
 
@@ -181,7 +183,6 @@ createVueApp(projectName, projectType);
 async function createVueApp(name, type = 'default') {
   const root = path.resolve(name);
   const appName = path.basename(root);
-
   checkAppName(appName);
   fs.ensureDirSync(name);
   if (!isSafeToCreateProjectIn(root, name)) {
@@ -211,7 +212,7 @@ async function createVueApp(name, type = 'default') {
   let buildInDependencies = [];
   switch (type) {
     case 'default':
-      allDependencies = ['vue', 'vuex', 'vue-router', 'axios', 'element-ui', 'element-resize-detector', 'echarts', 'moment', 'jsencrypt', 'js-cookie', 'wangeditor', 'es6-promise'];
+      allDependencies = ['vue@2.5.2', 'vuex@3.0.1', 'vue-router', 'axios', 'babel-polyfill', 'element-ui', 'element-resize-detector', 'echarts', 'moment', 'jsencrypt', 'js-cookie', 'wangeditor', 'es6-promise', 'html2canvas@1.0.0-rc.7', 'print-js@1.6.0'];
       break;
     case 'vue3':
       allDependencies = [];
@@ -321,13 +322,13 @@ async function run(projectType, root, appName, originalDirectory, allDependencie
    */
 
   initGit().then(() => {
-    return install(root, allDependencies, false, '1');
+    return install(root, allDependencies, false);
   })
   .then(() => {
-    return install(root, allDevdependencies, true, '2').then(() => { return ''; });
+    return install(root, allDevdependencies, true).then(() => { return ''; });
   })
   .then(() => {
-    return install(root, buildInDependencies, false, '3').then(() => '');
+    return install(root, buildInDependencies, false).then(() => '');
   })
   .then(() => {
     return initialCommit();
@@ -389,11 +390,11 @@ function success(appPath, appName, originalDirectory) {
   }
 
   console.log();
-  console.log(`Success! Created capp at ${root} success`);
+  console.log(`Success! Created capp at ${appPath} success`);
   console.log('Inside that directory, you can run several commands:');
   console.log('Inside that directory, you can run several commands:');
   console.log();
-  console.log(chalk.cyan(`  ${displayedCommand} start`));
+  console.log(chalk.cyan(`  ${displayedCommand} run dev`));
   console.log('    Starts the development server.');
   console.log();
   console.log(
@@ -401,42 +402,41 @@ function success(appPath, appName, originalDirectory) {
   );
   console.log('    Bundles the app into static files for production.');
   console.log();
-  console.log(chalk.cyan(`  ${displayedCommand} test`));
-  console.log('    Starts the test runner.');
+  // console.log(chalk.cyan(`  ${displayedCommand} test`));
+  // console.log('    Starts the test runner.');
   console.log();
   console.log();
   console.log('We suggest that you begin by typing:');
   console.log();
   console.log(chalk.cyan('  cd'), cdpath);
-  console.log(`  ${chalk.cyan(`${displayedCommand} start`)}`);
+  console.log(`  ${chalk.cyan(`${displayedCommand} run dev`)}`);
   console.log();
   console.log('Happy hacking!');
 }
 
-function install(root, dependencies, isDev, step) {
+function install(root, dependencies, isDev) {
   return new Promise((resolve, reject) => {
-    const command = 'npm';
+    const command = 'cnpm';
     let args = [
       'install',
     ];
     if (dependencies.length > 0) {
+      args = args.concat(dependencies);
       if (isDev) {
         args = args.concat(['--save-dev']);
       } else {
         args = args.concat(['--save']);
       }
-      args = args.concat(dependencies);
     }
+    args.push('--registry=https://registry.npm.taobao.org');
     args.push('--cwd');
     args.push(root);
-    console.log('step start', step);
     const child = spawn(command, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
         reject(new Error(`${command} ${args.join(' ')}`));
         return;
       }
-      console.log('step close', step);
       resolve();
     });
   });
@@ -448,14 +448,12 @@ function initGit() {
     const args = [
       'init',
     ];
-    console.log('initGit start')
     const child = spawn(command, args, { stdio: 'inherit' });
     child.on('close', code => {
       if (code !== 0) {
         reject(new Error(`${command} ${args.join(' ')}`));
         return;
       }
-      console.log('initGit close')
       resolve();
     });
   });
@@ -484,6 +482,7 @@ function initialCommit() {
           '"Initial commit"',
         ];
         const result2 = spawn.sync(command, args, { stdio: 'inherit' });
+        console.log('result2', result2);
         if (result2.status !== 0) {
           error = getError(command, args);
           // reject(getError(command, args));

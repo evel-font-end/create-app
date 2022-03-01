@@ -3,6 +3,9 @@
   "version": "0.0.4",
   "description": "create vue app",
   "main": "index.js",
+  "workspaces": [
+    "template/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
