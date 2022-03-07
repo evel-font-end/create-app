@@ -25,4 +25,22 @@ vue3版
 npx @epig/create-app my-app --vue3
 
 ```
+提交版本
+```
+# 注册 npm <https://www.npmjs.com/>账号密码，并在命令行进行登录
+npm adduser
+
+# 检测是否登陆成功
+npm who am i
+
+# 版本号格式：主版本号.次版本号.修订号
+# 版本号递增规则：
+#  - 主版本号：做了不兼容修改或颠覆式的重写
+#  - 次版本号：向下兼容的功能性新增
+#  - 修订号：向下兼容的问题修正
+#  大版本为 1.0.0，小版本是0.1.0，小修复是0.0.1
+npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>]
+
+# 发布@efont/vue-baselib
+npm publish --access public
 
