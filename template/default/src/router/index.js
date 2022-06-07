@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import VueRouter from 'vue-router';
+import VueRouter from 'vue-router';
 import Config from '@/config'
 import routes from './routers.js'
 import { getLocal, delLocal, saveLocal, hasOneOf } from 'util/tool'

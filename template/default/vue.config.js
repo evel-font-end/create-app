@@ -181,16 +181,16 @@ module.exports = {
         }
       })
     config.externals = {
-      "vue": 'Vue',
-      "vuex": "Vuex",
-      "vue-router": "VueRouter",
-      'element-ui': 'ELEMENT',
-      "moment": "moment",
-      'vue-awesome-swiper': 'VueAwesomeSwiper',
-      'swiper': 'Swiper',
-      'axios': 'axios',
-      'echarts': 'echarts',
-      'vue-quill-editor': 'VueQuillEditor'
+      // "vue": 'Vue',
+      // "vuex": "Vuex",
+      // "vue-router": "VueRouter",
+      // 'element-ui': 'ELEMENT',
+      // "moment": "moment",
+      // 'vue-awesome-swiper': 'VueAwesomeSwiper',
+      // 'swiper': 'Swiper',
+      // 'axios': 'axios',
+      // 'echarts': 'echarts',
+      // 'vue-quill-editor': 'VueQuillEditor'
     }
   }
 }

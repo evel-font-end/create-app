@@ -212,7 +212,7 @@ async function createVueApp(name, type = 'default') {
   let buildInDependencies = [];
   switch (type) {
     case 'default':
-      allDependencies = ['vue@2.5.2', 'vuex@3.0.1', 'vue-router', 'axios', 'babel-polyfill', 'element-ui', 'element-resize-detector', 'echarts', 'moment', 'jsencrypt', 'js-cookie', 'wangeditor', 'core-js@3.21.1', 'es6-promise', 'html2canvas@1.0.0-rc.7', 'print-js@1.6.0'];
+      allDependencies = ['vue@2.6.10', 'vuex@3.1.2', 'vue-router@3.0.7', 'axios', 'babel-polyfill', 'element-ui', 'element-resize-detector', 'echarts', 'moment', 'jsencrypt', 'js-cookie', 'wangeditor', 'core-js@3.21.1', 'es6-promise', 'html2canvas@1.0.0-rc.7', 'print-js@1.6.0'];
       break;
     case 'vue3':
       allDependencies = [];
