@@ -22,10 +22,12 @@ npx @efont/create-app my-app
 vue3版
 
 ```bash
-npx @epig/create-app my-app --vue3
+npx @efont/create-app my-app --vue3admin
 
 ```
+
 提交版本
+
 ```
 # 注册 npm <https://www.npmjs.com/>账号密码，并在命令行进行登录
 npm adduser
