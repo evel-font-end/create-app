@@ -1,0 +1,49 @@
+.meunModelBox {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px 0 !important;
+  // justify-content: space-between;
+}
+.meunModel {
+  width: 25%;
+  height: 120px;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+  .tip-box {
+    position: absolute;
+    right: 24%;
+    top: -10%;
+    z-index: 1001;
+    padding: 2px 6px;
+    background: #e83939;
+    border-radius: 17px;
+    font-family: SourceHanSansSC-Medium;
+    font-weight: 500;
+    font-size: 24px;
+    color: #ffffff;
+  }
+  .name {
+    margin-top: 8px;
+    font-family: SourceHanSansSC-Regular;
+    font-weight: 400;
+    font-size: 24px;
+    color: #1e1e1e;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 28px;
+  }
+  .iconfont {
+    background: linear-gradient(-45deg, #007aff, #29beff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .image-icon {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+    line-height: 88rpx;
+    text-align: center;
+  }
+}

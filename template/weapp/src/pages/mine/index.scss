@@ -1,0 +1,89 @@
+.mine {
+  background: url(~@/assets/images/mine/bg.png) #F5F6F9  no-repeat;
+  background-position: top;
+  background-size: 100% 603px;
+  height: 100vh;
+  overflow: auto;
+  padding: 20px 30px;
+  .lxy-nav-bar {
+    background: #fff0;
+  }
+  .lxy-nav-bar__inner .lxy-nav-bar__center{
+    color:#000 !important;
+    display:block !important;
+  }
+  .info-box{
+    display: flex;
+    align-items: center;
+    .left{
+      width: 140px;
+      height: 140px;
+      border-radius: 140px;
+      image{
+        width: 140px;
+        height: 140px;
+      }
+    }
+    .right{
+      position:relative;
+      flex:1;
+      margin-left: 30px;
+      font-family: SourceHanSansSC-Medium;
+      font-weight: 500;
+      font-size: 32px;
+      color: #1E1E1E;
+      letter-spacing: 0;
+      .name{
+        margin-bottom: 16px;
+        height: 50px;
+      }
+      .num{
+        height: 50px;
+        font-family: SourceHanSansSC-Regular;
+        font-weight: 400;
+        font-size: 28px;
+      }
+      .admin{
+        position:absolute;
+        right:0;
+        top:0;
+        padding:4px 10px;
+        background-image: linear-gradient(182deg, #9CF8FF 0%, #2117ffdb 100%, #2117ffdb 100%);
+        border-radius: 8px;
+        font-family: SourceHanSansSC-Regular;
+        font-weight: 400;
+        font-size: 24px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        line-height: 28px;
+      }
+    }
+  }
+  .mineBox {
+    padding: 30px;
+    margin:40px 0px 0;
+    border-radius: 24px;
+    background: #fff;
+    .mine-list{
+      height: 46px;
+      display: flex;
+      align-items: center;
+      .img-box,image{
+        width:32px;
+        height: 32px;
+        margin-right:20px
+      }
+      .name{
+        flex:1;
+        font-family: SourceHanSansSC-Regular;
+        font-weight: 400;
+        font-size: 28px;
+        color: #1E1E1E;
+        letter-spacing: 0;
+      }
+    }
+  }
+  .at-button{
+    margin-top: 50px;
+  }
+}

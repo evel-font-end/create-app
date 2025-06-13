@@ -1,0 +1,57 @@
+.row1 {
+
+    .row {
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        // height: 40px;
+        margin-bottom: 24px;
+        background: #F6F8FC;
+        border-radius: 8px;
+        padding: 24px;
+    
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+    
+        .state {
+            height: 35px;
+            line-height: 35px;
+            background: #e33c3414;
+            border-radius: 8px;
+            padding: 0 10px;
+
+            font-family: SourceHanSansSC-Regular;
+            font-weight: 400;
+            font-size: 26px;
+            color: #E83939;
+            letter-spacing: 0;
+            text-align: right;
+            line-height: 28px;
+        }
+        .name {
+            font-family: SourceHanSansSC-Medium;
+            font-weight: 800;
+            font-size: 28px;
+            color: #1E1E1E;
+            letter-spacing: 1.08px;
+            line-height: 30px;
+        }
+    
+        .value {
+            font-family: SourceHanSansSC-Normal;
+            font-weight: 400;
+            font-size: 26px;
+            color: #3A3A3A;
+            letter-spacing: 1px;
+            line-height: 30px;
+        }
+    }
+}

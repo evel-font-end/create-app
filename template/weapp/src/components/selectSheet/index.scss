@@ -1,0 +1,24 @@
+@import "~taro-ui-vue3/dist/style/components/action-sheet.scss";
+.selectSheet{
+  .label{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #fff;
+    .img{
+      width: 19px;
+      height: 29px;
+    }
+  }
+  .selectMain{
+    margin-left: 15px;
+    font-family: SourceHanSansSC-Bold;
+    font-weight: 700;
+    font-size: 26px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+  }
+  .at-icon{
+    margin-left: 15px;
+  }
+}

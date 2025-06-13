@@ -1,0 +1,16 @@
+.container {
+  height: 100%;
+  overflow: hidden;
+}
+.scroll-view {
+  height: 100%;
+}
+.loading-indicator, .no-more-data-indicator {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-family: SourceHanSansSC-Regular;
+  font-weight: 400;
+  font-size: 26px;
+  color: #A0AAB6;
+}

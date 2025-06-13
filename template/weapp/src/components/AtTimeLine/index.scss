@@ -1,0 +1,168 @@
+.AtTimeLine {
+
+
+    .model {
+
+        display: flex;
+        align-items: center;
+        margin-bottom: 48px;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            height: calc(100% + 48px);
+            top: 110px;
+            // transform: translate(-50%, -50%);
+            width: 1px;
+            border-left: dashed 2px #58A0FF;
+            z-index: 0;
+        }
+
+        &:last-child {
+            .iconfont {
+                display: none;
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+
+        .iconfont {
+            position: absolute;
+            top: calc(100% + 26px);
+            left: 33%;
+            transform: translate(-50%, -50%);
+
+            &.right {
+                left: calc(66% + 68px);
+                // right: 33%;
+            }
+
+
+        }
+
+        .lineBox {
+
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            width: 64px;
+            position: relative;
+            height:100%;
+            z-index: 1;
+
+            .icon {
+                position: relative;
+                width: 34px;
+                height: 34px;
+                background-image: linear-gradient(179deg, #58A0FF 0%, #0051AA 100%);
+                border-radius: 8px;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: calc(50% + 1px);
+                    top: calc(50% + -1px);
+                    -ms-transform: translate(-50%, -50%) rotate(45deg);
+                    transform: translate(-50%, -50%) rotateZ(45deg);
+                    height: 18px;
+                    width: 5px;
+                    background: #ffffff;
+                }
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: calc(50% - 4px);
+                    top: 50%;
+                    -ms-transform: translate(-50%, -50%) rotate(-45deg);
+                    transform: translate(-50%, -50%) rotateZ(-45deg);
+                    height: 8px;
+                    width: 5px;
+                    background: #ffffff;
+                }
+
+            }
+
+            // &::after {
+            //     content: "";
+            //     position: absolute;
+            //     left: 0%;
+            //     height: 100%;
+            //     top: 0px;
+            //     // transform: translate(-50%, -50%);
+            //     width: 1px;
+            //     border: solid 1px #0051AA;
+            // }
+
+            // &::before {
+            //     content: "";
+            //     position: absolute;
+            //     left: 50%;
+            //     height: 50%;
+            //     bottom: 0px;
+            //     transform: translate(-50%, -50%);
+            //     width: 1px;
+            //     border: solid 1px #0051AA;
+            // }
+
+        }
+
+        .lineBoxContent {
+
+            background: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            box-shadow: 0 2px 20px 0 #7d7d7d1f;
+            border-radius: 8px;
+            width: 100%;
+
+            .content {
+                padding: 24px 30px;
+
+                .name {
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: SourceHanSansSC-Medium;
+                    font-weight: 600;
+                    font-size: 28px;
+                    color: #1E1E1E;
+                    letter-spacing: 1.08px;
+                    line-height: 30px;
+                }
+                .state{
+                  font-family: SourceHanSansSC-Regular;
+                  font-weight: 400;
+                  font-size: 26px;
+                  color: #0051AA;
+                }
+                .info {
+                    margin-top: 24px;
+
+                    font-family: SourceHanSansSC-Regular;
+                    font-weight: 400;
+                    font-size: 26px;
+                    color: #545454;
+                    letter-spacing: 0;
+                    line-height: 28px;
+                }
+                .img-content {
+                    display: flex;
+                    flex-wrap: wrap; /* 允许项目在容器宽度不足时自动换行 */
+                    gap: 5px; /* 项目之间的间隔 */
+                    width: 100%;
+                    margin-top: 24px;
+                    .img-item {
+                        width: 120px;
+                        height: 120px;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+}

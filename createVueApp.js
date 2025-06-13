@@ -47,6 +47,34 @@ const vue3PackageJson = {
   },
 };
 
+const weappPackageJson = {
+  scripts: {
+    serve: "npm run dev:weapp",
+    build: "npm run build:weapp",
+    "build:weapp": "taro build --type weapp",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:tt": "taro build --type tt",
+    "build:h5": "taro build --type h5",
+    "build:rn": "taro build --type rn",
+    "build:qq": "taro build --type qq",
+    "build:jd": "taro build --type jd",
+    "build:quickapp": "taro build --type quickapp",
+    "build:harmony-hybrid": "taro build --type harmony-hybrid",
+    "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:swan": "npm run build:swan -- --watch",
+    "dev:alipay": "npm run build:alipay -- --watch",
+    "dev:tt": "npm run build:tt -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "dev:rn": "npm run build:rn -- --watch",
+    "dev:qq": "npm run build:qq -- --watch",
+    "dev:jd": "npm run build:jd -- --watch",
+    "dev:quickapp": "npm run build:quickapp -- --watch",
+    "dev:harmony-hybrid": "npm run build:harmony-hybrid -- --watch",
+    gulp: "gulp build",
+  },
+};
+
 const defaultDevDependencies = [
   "@vue/cli-plugin-babel@4.5.0",
   "@vue/cli-service@4.5.0",
@@ -109,18 +137,18 @@ const vue3DevDependencies = [
   "@typescript-eslint/parser",
   "@vitejs/plugin-vue@5.2.1",
   "@vitejs/plugin-vue-jsx@4.1.1",
-  "@vue/cli-plugin-babel@4.5.0",
-  "@vue/cli-plugin-eslint",
+  "@vue/cli-plugin-babel@~4.5.0",
+  "@vue/cli-plugin-eslint@~4.5.0",
   "@vue/eslint-config-typescript",
-  "compression-webpack-plugin@8.0.1",
+  "compression-webpack-plugin@^8.0.1",
   "eslint",
   "eslint-plugin-vue",
-  "less@3.0.4",
-  "less-loader@5.0.0",
+  "less",
+  "less-loader",
   "lint-staged",
   "path",
   "px2rem-loader",
-  "sass@1.27.0",
+  "sass",
   "sass-loader@10.0.4",
   "typescript@4.1.5",
   "unocss",
@@ -130,7 +158,49 @@ const vue3DevDependencies = [
   "vite@6.1.0",
   "vitest@3.0.5",
 ];
+
+const weappDevDependencies = [
+  "@babel/core",
+  "@tarojs/cli@3.6.32",
+  "@tarojs/taro-loader@3.6.32",
+  "@tarojs/test-utils-vue3@^0.1.1",
+  "@tarojs/webpack5-runner@3.6.32",
+  "@types/node@^18.15.11",
+  "@types/webpack-env@^1.13.6",
+  "@typescript-eslint/eslint-plugin@^6.2.0",
+  "@typescript-eslint/parser@^6.2.0",
+  "@vue/babel-plugin-jsx@^1.0.6",
+  "@vue/compiler-sfc@^3.0.0",
+  "@vue/eslint-config-prettier@^6.0.0",
+  "@vue/eslint-config-typescript@^7.0.0",
+  "babel-preset-taro@3.6.32",
+  "css-loader@3.4.2",
+  "dayjs",
+  "del@6.1.1",
+  "eslint@^8.12.0",
+  "eslint-config-taro@3.6.32",
+  "eslint-plugin-prettier@^3.3.1",
+  "eslint-plugin-vue@^8.0.0",
+  "gulp@^5.0.0",
+  "gulp-cssnano@^2.1.3",
+  "gulp-htmlclean@^2.7.22",
+  "gulp-imagemin@7.0.0",
+  "gulp-uglify@^3.0.2",
+  "postcss@^8.4.18",
+  "style-loader@1.3.0",
+  "stylelint@^14.4.0",
+  "ts-node@^10.9.1",
+  "tsconfig-paths-webpack-plugin@^4.1.0",
+  "typescript@^5.1.0",
+  "vue-loader@^17.1.0",
+  "webpack@5.78.0",
+];
+
 const browserslistConfig = {
+  browserslist: ["> 1%", "last 2 versions", "not ie <= 8"],
+};
+
+const weappBrowserslistConfig = {
   browserslist: ["> 1%", "last 2 versions", "not ie <= 8"],
 };
 
@@ -186,7 +256,7 @@ const program = new commander.Command(packageJson.name)
   .version(packageJson.version)
   .arguments("<project-directory>")
   .option("--vue3admin")
-  .option("--admin")
+  .option("--weapp")
   .usage(`${chalk.green("<project-directory>")} [options]`)
   .action((name) => {
     projectName = name;
@@ -217,8 +287,8 @@ if (program.vue3admin) {
 if (program.mobile) {
   mobile = true;
 }
-if (program.admin) {
-  projectType = "admin";
+if (program.weapp) {
+  projectType = "weapp";
 }
 
 createVueApp(projectName, projectType);
@@ -236,12 +306,17 @@ async function createVueApp(name, type = "default") {
   console.log();
 
   let packageScriptConfig = {};
+  let browserslist = browserslistConfig;
   switch (type) {
     case "default":
       packageScriptConfig = defaultPackageJson;
       break;
     case "vue3admin":
       packageScriptConfig = vue3PackageJson;
+      break;
+    case "weapp":
+      packageScriptConfig = weappPackageJson;
+      browserslist = weappBrowserslistConfig;
       break;
     default:
       break;
@@ -253,20 +328,18 @@ async function createVueApp(name, type = "default") {
     private: true,
     ...packageScriptConfig,
     ...enginesConfig,
-    ...browserslistConfig,
+    ...browserslist,
   };
-  if(type !== 'vue3admin') {
-    fs.writeFileSync(
-      path.join(root, "package.json"),
-      JSON.stringify(packageJson, null, 2) + os.EOL
-    );
-  }
+  fs.writeFileSync(
+    path.join(root, "package.json"),
+    JSON.stringify(packageJson, null, 2) + os.EOL
+  );
 
   const originalDirectory = process.cwd();
   process.chdir(root);
 
   let allDependencies = [];
-  const buildInDependencies = [];
+  let buildInDependencies = [];
   switch (type) {
     case "default":
       allDependencies = [
@@ -287,6 +360,7 @@ async function createVueApp(name, type = "default") {
         "html2canvas@1.0.0-rc.7",
         "print-js@1.6.0",
       ];
+      buildInDependencies = [];
       break;
     case "vue3admin":
       allDependencies = [
@@ -301,6 +375,7 @@ async function createVueApp(name, type = "default") {
         "es6-promise",
         "js-cookie",
         "jsencrypt",
+        "qs",
         "vue-class-component",
         "vue@3.5.13",
         "vue-router@4.5.0",
@@ -308,8 +383,26 @@ async function createVueApp(name, type = "default") {
         "vuex",
       ];
       break;
-    case "admin":
-      allDependencies = [];
+    case "weapp":
+      allDependencies = [
+        "@babel/runtime",
+        "@qiun/vue-ucharts",
+        "@tarojs/components@3.6.32",
+        "@tarojs/helper@3.6.32",
+        "@tarojs/plugin-framework-vue3@3.6.32",
+        "@tarojs/plugin-html",
+        "@tarojs/plugin-platform-weapp@3.6.32",
+        "@tarojs/runtime@3.6.32",
+        "@tarojs/shared@3.6.32",
+        "@tarojs/taro@3.6.32",
+        "crypto-js",
+        "lodash",
+        "taro-plugin-pinia",
+        "taro-ui-vue3",
+        "vue",
+        "xgplayer@3.0.10",
+        "xgplayer-flv@3.0.10",
+      ];
       break;
     default:
       break;
@@ -373,7 +466,7 @@ async function run(
   allDependencies,
   buildInDependencies
 ) {
-  let allDevdependencies = [];
+  let allDevdependencies = [...defaultDevDependencies];
   switch (projectType) {
     case "default":
       allDevdependencies = [...defaultDevDependencies];
@@ -381,8 +474,10 @@ async function run(
     case "vue3admin":
       allDevdependencies = [...vue3DevDependencies];
       break;
-    default:
+    case "weapp":
+      allDevdependencies = [...weappDevDependencies];
       break;
+    default:
   }
 
   console.log("Copy files from template");
@@ -436,10 +531,7 @@ async function run(
     const knownGeneratedFiles = [...templateGeneratedFiles, "package.json"];
     exit(root, appName, knownGeneratedFiles);
   }
-  if(projectType === 'vue3admin') {
-    success(root, appName, originalDirectory);
-    return;
-  }
+
   console.log("Installing packages. This might take a couple of minutes.");
   /**
    * 要在安装依赖前执行git初始化，不然提交前检查不起作用
@@ -451,9 +543,6 @@ async function run(
     })
     .then(() => {
       return install(root, allDevdependencies, true);
-    })
-    .then(() => {
-      return initialCommit();
     })
     .then(() => {
       success(root, appName, originalDirectory);
@@ -475,7 +564,7 @@ async function run(
         "package-lock.json",
         "yarn.lock",
       ];
-      exit(root, appName, knownGeneratedFiles);
+      // exit(root, appName, knownGeneratedFiles);
     });
 }
 
@@ -520,8 +609,8 @@ function success(appPath, appName, originalDirectory) {
   console.log(`Success! Created capp at ${appPath} success`);
   console.log("Inside that directory, you can run several commands:");
   console.log();
-  console.log(chalk.cyan(`  yarn install`));
-  console.log("    Fetching And Installing the packages.");
+  // console.log(chalk.cyan(`  yarn install`));
+  // console.log("    Fetching And Installing the packages.");
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} run dev`));
   console.log("    Starts the development server.");
@@ -545,7 +634,7 @@ function success(appPath, appName, originalDirectory) {
 
 function install(root, dependencies, isDev) {
   return new Promise((resolve, reject) => {
-    const command = "yarn";
+    const command = "cnpm";
     let args = ["add"];
     if (dependencies.length > 0) {
       args = args.concat(dependencies);
@@ -600,7 +689,6 @@ function initialCommit() {
       if (result1.status === 0) {
         args = ["commit", "-m", '"Initial commit"'];
         const result2 = spawn.sync(command, args, { stdio: "inherit" });
-        console.log("result2", result2);
         if (result2.status !== 0) {
           error = getError(command, args);
           // reject(getError(command, args));

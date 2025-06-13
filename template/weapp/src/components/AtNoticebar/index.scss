@@ -1,0 +1,22 @@
+
+.notice-bar-box{
+  background:#fff;
+  border-radius:18px;
+  padding:24px;
+  font-family: SourceHanSansSC-Normal;
+  font-weight: 400;
+  font-size: 26px;
+  color: #545454;
+  letter-spacing: 0;
+  .notice-cont-box{
+    display: flex;
+    align-items: center;
+  }
+  .notice-detail{
+    margin-right:200px
+  }
+  .at-icon{
+    color:#0051AA;
+    font-size:32px
+  }
+}

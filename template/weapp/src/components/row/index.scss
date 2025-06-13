@@ -1,0 +1,201 @@
+@import "~taro-ui-vue3/dist/style/components/image-picker.scss";
+@import "~taro-ui-vue3/dist/style/components/icon.scss";
+@import "~taro-ui-vue3/dist/style/components/textarea.scss";
+.rowx {
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // height: 40px;
+        margin-bottom: 24px;
+        // height: 70px;
+        // margin-bottom: 30px;
+
+        &.column {
+            flex-direction: column;
+            align-items: self-start;
+
+            .value {
+                margin-left: 0;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .value.value--emptyName {
+                margin-top: 0;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        .itemLeft {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            .iconView{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 20px;
+                background: #327cd01f;
+            }
+            .icon {
+            }
+        }
+        .arrow-icon{
+          position: absolute;
+          right:0;
+          top:0;
+          bottom:0;
+          margin:auto 0;
+          line-height: 2;
+        }
+        .name {
+            font-family: SourceHanSansSC-Regular;
+           font-weight: 400;
+            font-size: 28px;
+            color: #1E1E1E;
+            letter-spacing: 0;
+            line-height: 28px;
+        }
+
+        .value {
+            width: 100%;
+            font-family: SourceHanSansSC-Regular;
+            font-weight: 400;
+            font-size: 26px;
+            color: #1E1E1E;
+            letter-spacing: 0;
+            text-align: right;
+            line-height: 28px;
+            margin-left: 50px;
+
+            &.valueNoOverflow {
+                position:relative;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .at-input {
+                height: 76px;
+                padding: 15px 20px;
+                font-family: SourceHanSansSC-Regular !important;;
+                font-weight: 400 !important;;
+                font-size: 26px !important;;
+                color: #1E1E1E !important;;
+                letter-spacing: 0 !important;;
+                text-align: right !important;;
+                line-height: 28px !important;;
+                border-top: 1PX #d6e4ef solid;
+                border-bottom: 1PX #d6e4ef solid;
+                border-right: 1PX #d6e4ef solid;
+                border-left: 1PX #d6e4ef solid;
+                text-align: right !important;
+            }
+            .arrow-class{
+              width:94%;
+              color: #E83939 !important;
+            }
+            .picker {
+                width: 100%;
+                .atlist::after {
+                    border-top-width: 0PX;
+                    border-bottom-width: 0PX;
+                }
+
+                .at-list__item {
+                    padding: 0px;
+                }
+
+                .item-extra__info {
+                    padding-right: 0px;
+
+                    font-family: SourceHanSansSC-Regular;
+                    font-weight: 400;
+                    font-size: 26px;
+                    color: #1E1E1E;
+                    letter-spacing: 0;
+                    text-align: right;
+                    line-height: 28px;
+                }
+            }
+
+            textarea {
+                font-family: SourceHanSansSC-Regular;
+                font-weight: 400;
+                font-size: 26px;
+                color: #1E1E1E;
+                letter-spacing: 0;
+                text-align: right;
+                line-height: 28px;
+
+                width: 100%;
+            }
+
+            .checkbox {
+                // line-height: 28px;
+                .text{
+                    width: 100%;
+                    display: block;
+                }
+            }
+            &.left{
+                .at-input {
+                    text-align: left !important;
+                }
+                textarea {
+                    text-align: left !important;
+                }
+                .item-extra__info{
+                    text-align: left !important;
+                }
+            }
+        }
+
+    }
+    .img-container {
+        display: flex;
+        flex-wrap: wrap; /* 允许项目在容器宽度不足时自动换行 */
+        gap: 5px; /* 项目之间的间隔 */
+        .rowImageClass {
+            cursor: pointer;
+            width: 120px;
+            height: 120px;
+            background: #FFFFFF;
+            border: 1px solid #DEDEDE;
+            border-radius: 8px;
+            line-height: 120px;
+            text-align: center;
+            .icon-jiahao {
+                margin-right: 0;
+            }
+        }
+        .rowImageClass-img {
+            cursor: pointer;
+            width: 120px;
+            height: 120px;
+            background: #FFFFFF;
+            border: 1px solid #DEDEDE;
+            border-radius: 8px;
+            line-height: 120px;
+            text-align: center;
+        }
+    }
+    .toggle-control{
+        padding: 20px 0 0;
+        font-family: SourceHanSansSC-Regular;
+        font-weight: 400;
+        font-size: 26px;
+        color: #0051AA;
+        .at-icon{
+            margin-left: 10px;
+        }
+    }
+}
+
+.at-input::placeholder,
+.at-textarea__textarea::placeholder {
+  color: #1E1E1E; /* 将占位符颜色设置为红色 */
+}

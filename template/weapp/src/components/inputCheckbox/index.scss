@@ -1,0 +1,55 @@
+.inputRadio {
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 56px;
+
+    &:last-child {
+        margin-right: 0px;
+    }
+
+    &.check {
+        .icon {
+            position: relative;
+            border-color: #0051AA;
+            &::after {
+                content: "";
+                background-color: #0051AA;
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }    
+    }
+
+    .icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: solid 2px #BEBEBE;
+
+        margin-right: 16px;
+        flex-shrink: 0;
+    }
+
+    .name {
+        font-family: SourceHanSansSC-Regular;
+        font-weight: 400;
+        font-size: 28px;
+        color: #545454;
+        letter-spacing: 0;
+        line-height: 35px;
+    }
+
+}
+
+.menuList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

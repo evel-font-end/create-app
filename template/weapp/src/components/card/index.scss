@@ -1,0 +1,122 @@
+.CardBox {
+    // width: 710px;
+    // height: 513px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 12px 0 #bbbbbb80;
+    border-radius: 24px;
+    margin: 30px;
+    position: relative;
+
+    &.noBackground {
+        background: #FFFFFF00;
+        box-shadow: 0 2px 20px 0 #7d7d7d00;
+    }
+
+    .CardTitle {
+        // height: 91px;
+        // line-height: 91px;
+        padding: 0px 30px;
+        // border-bottom: 1px solid #EBEBEB;
+
+        &.bottomLine {
+            border-bottom: 1px solid #EBEBEB;
+        }
+
+        .titleText {
+            height: 91px;
+            line-height: 91px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .titleText1 {
+                 flex:1;
+                font-family: SourceHanSansSC-Bold;
+                font-weight: 700;
+                font-size: 28px;
+                color: #1E1E1E;
+                letter-spacing: 1.08px;
+                line-height: 30px;
+                // width: 60%; /* 设置容器宽度 */
+                padding-right: 20px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2; /* 设置文本行数 */
+                -webkit-box-orient: vertical;
+                overflow: hidden; /* 超出部分隐藏 */
+                text-overflow: ellipsis; /* 显示省略号 */
+
+                &.line::before {
+                    content: "";
+                    position:absolute;
+                    left: 0;
+                    width: 6px;
+                    height: 32px;
+                    background: #0051AA;
+                    border-radius: 3px;
+                }
+            }
+
+            .rightBtn {
+                display: flex;
+                align-items: center;
+
+                .rightIcon {
+                    // width: 24px;
+                    // margin-left: 16px;
+                    font-family: cursive;
+                }
+            }
+
+            .rightB {
+                background: #E8393914;
+                border-radius: 8px;
+                padding: 0px 10px;
+                height: 40px;
+                line-height: 40px;
+
+                font-family: SourceHanSansSC-Regular;
+                font-weight: 400;
+                font-size: 26px;
+                color: #E83939;
+                letter-spacing: 0;
+                text-align: right;
+                // line-height: 28px;
+                // display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .titleFu {
+            display: flex;
+            margin-bottom: 20px;
+            .user, .time {
+                font-family: SourceHanSansSC-Regular;
+                font-weight: 400;
+                font-size: 24px;
+                color: #707070;
+                letter-spacing: 0;
+                line-height: 28px;
+
+                display: flex;
+                align-items: center;
+                margin-right: 32px;
+            }
+
+            .img {
+                width: 32px;
+                height: 32px;
+                margin-right: 14px;
+            }
+        }
+    }
+
+    .CardSlot {
+        padding: 0 30px 30px;
+
+        &.noPadding {
+            padding: 0;
+        }
+    }
+}

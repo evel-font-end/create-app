@@ -1,0 +1,24 @@
+.regionPicker{
+    &.border{
+        border-top: 1PX #d6e4ef solid;
+        border-bottom: 1PX #d6e4ef solid;
+        border-right: 1PX #d6e4ef solid;
+        border-left: 1PX #d6e4ef solid;
+    }
+    height: 76px;
+    .at-list{
+        padding: 15px 20px;
+        height: 76px;
+        display: flex;
+        align-items: center;
+    }
+    .item-extra__info{
+        font-weight: 400;
+        font-size: 28px;
+        color: #1E1E1E;
+        overflow: hidden; /* 确保超出容器的文本被裁剪 */
+        white-space: nowrap; /* 确保文本在一行内显示 */
+        text-overflow: ellipsis; /* 使用省略号表示文本超出 */
+        text-align: right;
+    }
+}

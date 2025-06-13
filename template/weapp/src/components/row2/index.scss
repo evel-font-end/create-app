@@ -1,0 +1,102 @@
+.row2 {
+
+    .row {
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        // height: 40px;
+        margin-bottom: 24px;
+        // background: #F6F8FC;
+        border-radius: 8px;
+        // padding: 24px;
+    
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            position: relative;
+            margin-bottom: 20px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 6px;
+                height: 24px;
+                background: #0051AA;
+                border-radius: 3px;
+            }
+
+            .name {
+                font-family: SourceHanSansSC-Medium;
+                font-weight: 500;
+                font-size: 28px;
+                color: #1E1E1E;
+                letter-spacing: 1.08px;
+                line-height: 30px;
+                margin-left: 18px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+
+            .number {
+                width: 60px;
+                height: 33.95px;
+                background: #D0E6FF;
+                border-radius: 17px;
+
+                font-family: SourceHanSansSC-Regular;
+                font-weight: 400;
+                font-size: 24px;
+                color: #0051AA;
+                letter-spacing: 0;
+                text-align: center;
+                line-height: 28px;
+            }
+        }
+
+        .bottom {
+
+            background: #F6F8FC;
+            border-radius: 8px;
+            padding: 16px;
+
+            .bottomRow {
+                margin-bottom: 10px;
+                display: flex;
+
+                &:last-child {
+                    margin-bottom: 10px;
+                }
+
+                .name {
+                    flex-shrink: 0;
+                }
+
+                .name, .value {
+                    height: 30px;
+                    font-family: SourceHanSansSC-Normal;
+                    font-weight: 400;
+                    font-size: 22px;
+                    color: #3A3A3A;
+                    letter-spacing: 0.85px;
+                    line-height: 30px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    // width: 280px;
+                }
+
+            }
+
+        }
+    
+       
+    }
+}

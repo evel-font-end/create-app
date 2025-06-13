@@ -1,0 +1,50 @@
+.my-at-tabs {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+
+    .at-tabs__header {
+        height: 88px;
+        flex-shrink: 0;
+    }
+
+    .at-tabs__body {
+        height: calc(100% - 88px);
+        // height: 100%;
+        // overflow-y: auto;
+        // overflow-x: hidden;
+    }
+
+    .at-tabs__item {
+        font-family: SourceHanSansSC-Medium;
+        font-weight: 600;
+        font-size: 30px;
+        padding: 24rpx 0rpx;
+        color: #1E1E1E;
+        text-align: center;
+    }
+
+    .at-tabs__item--active {
+        color: #0051AA;
+
+        .at-tabs__item-underline {
+            transform: translate(-50%, 0) scale(1);    
+        }
+    }
+
+    .at-tabs__item-underline {
+        width: 68px;
+        height: 6px;
+        background-image: linear-gradient(90deg, #0051AA 0%, #0051aa00 100%);
+        background-color: none;
+        border-radius: 3px;
+        left: 50%;
+        transform: translate(-50%, 0) scale(0);
+    }
+
+    .at-tabs-pane {
+        height: 100%;
+        overflow: auto;
+    }
+
+}

@@ -1,0 +1,29 @@
+.updatePassword {
+
+  .model {
+    margin:20px;
+    padding:32px 36px ;
+    background: #FFFFFF;
+    border-radius: 24px;
+    .at-input {
+      height: 76px;
+      margin:24px 0 30px;
+      background: #FFFFFF;
+      border: 1px solid #DEDEDE;
+      border-radius: 12px;
+    }
+
+    .name {
+      font-family: SourceHanSansSC-Regular;
+      font-weight: 400;
+      font-size: 28px;
+      color: #1E1E1E;
+      letter-spacing: 0;
+    }
+  }
+
+  .buttomConfirm {
+    margin-top: 48px;
+  }
+
+}

@@ -1,0 +1,55 @@
+
+
+// status-tag
+$status_tag_warning_border: #FF7527;
+$status_tag_warning_bg: rgb(255, 247, 232);
+$status_tag_warning_color: #FF7527;
+$status_tag_success_border: #19CC95;
+$status_tag_success_color: #19CC95;
+$status_tag_success_bg: rgb(201, 247, 233);
+$status_tag_danger_border: #FF3534;
+$status_tag_danger_color: #FF3534;
+$status_tag_danger_bg: rgb(255, 236, 232);
+$status_tag_primary_border: #0051AA;
+$status_tag_primary_color: #0051AA;
+$status_tag_primary_bg: rgb(240, 246, 255);
+$status_tag_info_border: #A8BCE2;
+$status_tag_info_color: #A8BCE2;
+$status_tag_info_bg: rgb(244, 244, 244);
+
+.x-status-tag {
+    display: inline-block;
+    font-size: 24px;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 8px;
+    font-weight: bold;
+    box-sizing: border-box;
+    white-space: nowrap;
+    &.x-status-tag--warning {
+      border-color: $status_tag_warning_border;
+      color: $status_tag_warning_color;
+      background: $status_tag_warning_bg;
+    }
+    &.x-status-tag--success {
+      border-color: $status_tag_success_border;
+      color: $status_tag_success_color;
+      background: $status_tag_success_bg;
+    }
+    &.x-status-tag--danger {
+      border-color: $status_tag_danger_border;
+      color: $status_tag_danger_color;
+      background: $status_tag_danger_bg;
+    }
+    &.x-status-tag--primary {
+      border-color: $status_tag_primary_border;
+      color: $status_tag_primary_color;
+      background: $status_tag_primary_bg;
+    }
+    &.x-status-tag--info {
+      border-color: $status_tag_info_border;
+      color: $status_tag_info_color;
+      background: $status_tag_info_bg;
+    }
+  }

@@ -1,0 +1,74 @@
+.boxQuan {
+    height: 76px;
+    background: #ffffff;
+    border: 1px solid #dedede;
+    border-radius: 44px 44px 40px 40px;
+    // box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+
+    .img {
+        margin: 20px;
+        width: 32px;
+        height: 33.73px;
+
+        image {
+            width: 32px;
+            height: 32px;
+        }
+    }
+    .myAtInput {
+        height: 76px;
+        // background: #ffffff;
+        // border: 1px solid #dedede;
+        border-radius: 44px 44px 40px 40px;
+        box-sizing: border-box;
+        padding: 0;
+        margin-left: 0;
+        width: 100%;
+
+        &::after {
+            content: none;
+        }
+
+        // &::v-deep {
+
+            .at-input__container {
+                height: 100%;
+            }
+
+            .at-input__input {
+                height: 100%;
+            }
+
+            .weui-input {
+                height: 100%;
+                border-radius: 44px 44px 40px 40px;
+                padding: 0 20px;
+            }
+        // }
+    }
+  }
+
+
+.add {
+    width: 64px;
+    height: 64px;
+    background-image: linear-gradient(183deg, #305DFA 0%, #39A4FF 47%, #1FA5FF 100%);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.boxSearch {
+    display: flex;
+    align-items: center;
+}

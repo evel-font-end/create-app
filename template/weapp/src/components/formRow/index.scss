@@ -1,0 +1,13 @@
+.formRow{
+    .row{
+        min-height: 104px;
+        margin-bottom: 0;
+        border-bottom: 1px solid #E5E5E5;
+        &.column{
+            border: none;
+        }
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+}

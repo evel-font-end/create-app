@@ -1,0 +1,16 @@
+@import "~taro-ui-vue3/dist/style/components/button.scss";
+.index{
+}
+.bottom-content {
+    display: flex;
+    padding: 10px 30px;
+    .operatingButton {
+        width: 100%;
+        display: flex;
+        flex: 1;
+        margin-bottom: 40px;
+        .at-button{
+            width: 100%;
+        }
+    }
+}

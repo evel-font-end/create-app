@@ -1,0 +1,76 @@
+$primary: #0051AA;
+$primary-hover: #028BFF;
+$primary-click: #004693;
+$primary-disabled: #3D95FF;
+$primary-other: #DFE6EF;
+$primary-tint: #F0F6FF;
+
+$danger: #FF3534;
+$danger-hover: #F76560;
+$danger-click: #D25F00;
+$danger-disabled: #CB2634;
+$danger-other: #FBACA3;
+$danger-tint: #FFECE8;
+
+// .btn {
+//     width: 638px;
+//     height: 88px;
+//     background: #FFFFFF;
+//     border: 1px solid #0051AA;
+//     border-radius: 44px;
+//     margin: 0 auto;
+
+//     font-family: SourceHanSansSC-Regular;
+//     font-weight: 400;
+//     font-size: 28px;
+//     color: #0051AA;
+//     letter-spacing: 0;
+//     text-align: center;
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+
+  .x-button {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 26px;
+    border-radius: 4px;
+    &.x-button--ghost {
+      font-weight: normal;
+    }
+    &.el-button--primary,
+    &.el-button--primary:focus,
+    &.el-button--primary:hover {
+      border-color: $primary;
+      background: linear-gradient(67deg, $primary -48.38%, $primary-hover 265.14%);
+      &.is-plain {
+        border-color: $primary-tint;
+        background: $primary-tint;
+        color: $primary;
+      }
+      &.x-button--ghost,
+      &.x-button--ghost:hover,
+      &.x-button--ghost:focus {
+        border: 1px solid $primary;
+        color: $primary;
+        background: transparent;
+      }
+    }
+    &.el-button--danger,
+    &.el-button--danger:focus,
+    &.el-button--danger:hover {
+      border-color: $danger;
+      background: linear-gradient(67deg, $danger -48.38%, $danger-hover 265.14%);
+      &.is-plain {
+        border-color: $danger-tint;
+        background: $danger-tint;
+        color: $danger;
+      }
+      &.x-button--ghost {
+        border-color: $danger;
+        color: $danger;
+      }
+    }
+  }

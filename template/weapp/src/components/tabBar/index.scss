@@ -1,0 +1,39 @@
+.tabBar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 800;
+    visibility: visible;
+    background: #FFFFFF;
+    box-shadow: 0 -1px 8px 0 #00000017;
+    height: 165px;
+    .at-tab-bar{
+      width: 100%;
+      position: relative;
+      padding-top: 17px;
+    }
+    .at-tab-bar__item{
+        padding-top: 0;
+        .iconfont{
+          margin-bottom: 10px;
+          font-size: 36px !important;
+        }
+        .at-tab-bar__title{
+            font-family: SourceHanSansSC-Regular;
+            font-weight: 400;
+            font-size: 22px;
+            color: #9AA5B4;
+            letter-spacing: 0;
+            text-align: center;
+        }
+        &.active{
+          .iconfont{
+            color: #0051AA !important;
+          }
+          .at-tab-bar__title{
+              color: #0051AA !important;
+          }
+        }
+    }
+}
