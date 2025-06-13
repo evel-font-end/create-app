@@ -76,8 +76,8 @@ const weappPackageJson = {
 };
 
 const defaultDevDependencies = [
-  "@vue/cli-plugin-babel@4.5.0",
-  "@vue/cli-service@4.5.0",
+  "@vue/cli-plugin-babel@~4.5.0",
+  "@vue/cli-service@~4.5.0",
   "autoprefixer@7.1.2",
   "babel-core",
   "babel-eslint",
@@ -128,7 +128,7 @@ const defaultDevDependencies = [
   "vue-loader",
   "vue-quill-editor",
   "vue-style-loader@3.1.2",
-  "vue-template-compiler@2.5.2",
+  "vue-template-compiler@2.6.10",
   "webpack-bundle-analyzer",
 ];
 
